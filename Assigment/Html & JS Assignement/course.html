@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Selection</title>
+</head>
+
+<body>
+    <script>
+        var courses = ["Java", "Python", "JavaScript", "HTML"];
+        var username = prompt("Please enter your username:");//username
+        var courseChoice = prompt("Please enter your course choice:");//course choice
+        var courseFound = false;
+        for (var i = 0; i < courses.length; i++) {
+            if (courseChoice === courses[i]) {
+                courseFound = true;
+                break;
+            }
+        }
+        if (courseFound) {
+            document.write(`Welcome ${username}!<br>`);
+            document.write(`You have selected ${courseChoice}.<br>`);//dispalying the choice based on array
+            document.write("The course fee is 2000.");
+        } else {
+            document.write(`Welcome ${username}!<br>`);
+            document.write(`The selected course (${courseChoice}) is not available.`);
+        }
+    </script>
+</body>
+
+</html>

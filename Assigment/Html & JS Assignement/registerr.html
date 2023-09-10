@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        #tab {
+            background-color: #D0BFFF;
+        }
+
+        #fill {
+            margin-top: 10px;
+            margin-left: 140px;
+            height: 40px;
+            border-radius: 20px;
+            width: 200px;
+            background-color: #AED2FF;
+        }
+    </style>
+    <script>
+        function register() {
+            var name = document.getElementById("name").value;
+            var password = document.getElementById("pass").value;
+            var age = document.getElementById("age").value;
+            var gender = document.querySelector('input[name="gender"]:checked');
+            var courseName = document.getElementById("course").value;
+            var phoneNumber = document.getElementById("phone").value;
+            var dob = document.getElementById("dob").value;
+
+            if (name.length < 5 || name.length > 15) {
+                alert("Name must be between 5 and 15 characters.");
+                return false;
+            }
+
+            if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&*!])[A-Za-z\d@#$%^&*!]{5,15}$/.test(password)) {
+                alert("Password must contain alphabets, uppercase, lowercase, special characters, and be between 5 and 15 characters.");
+                return false;
+            }
+
+            if (age < 20 || age > 80) {
+                alert("Age must be between 20 and 80.");
+                return false;
+            }
+
+            if (!gender) {
+                alert("Please select a gender.");
+                return false;
+            }
+
+            if (courseName === "---select---") {
+                alert("Please select a course.");
+                return false;
+            }
+
+            if (phoneNumber.length !== 10) {
+                alert("Phone number must be 10 digits long.");
+                return false;
+            }
+
+            var year = new Date(dob).getFullYear();
+            if (year < 1998) {
+                alert("Date of birth cannot be below 1998.");
+                return false;
+            }
+
+            // Validation passes
+            alert("Registered successfully!");
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <form action="register.html" name="registerForm" onsubmit="return register()">
+        <table id="tab" border="1" cellpadding="10" cellspacing="5">
+            <tr>
+                <td>Name</td>
+                <td><input type="text" id="name" name="name" minlength="5" maxlength="15" required></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input id="pass" type="password" name="password" required></td>
+            </tr>
+            <tr>
+                <td>Age</td>
+                <td><input id="age" type="number" name="age" min="20" max="80"></td>
+            </tr>
+            <tr>
+                <td>Date of Birth</td>
+                <td><input id="dob" type="date" name="dob" min="1998-01-01" required></td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td><input type="radio" name="gender" required>Male
+                    <input type="radio" name="gender" required>Female</td>
+            </tr>
+            <tr>
+                <td>Course Names</td>
+                <td><select name="course" id="course">
+                        <option value="Java">Java</option>
+                        <option value="Python">Python</option>
+                        <option value="JavaScript">JavaScript</option>
+                        <option value="HTML">HTML</option>
+                    </select></td>
+            </tr>
+            <tr>
+                <td>Hobbies</td>
+                <td><input type="checkbox" name="hobbies" value="reading">Reading
+                    <input type="checkbox" name="hobbies" value="dance">Dance
+                    <input type="checkbox" name="hobbies" value="cricket">Cricket
+                    <input type="checkbox" name="hobbies" value="browsing">Browsing</td>
+            </tr>
+            <tr>
+                <td>Phone Number</td>
+                <td><input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required></td>
+            </tr>
+        </table>
+        <input type="submit" value="Submit" id="fill">
+    </form>
+</body>
+
+</html>
